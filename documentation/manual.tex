@@ -1,0 +1,608 @@
+\documentclass{article}
+\usepackage{amssymb,amsmath}
+
+
+% from http://mintaka.sdsu.edu/GF/bibliog/latex/floats.html
+% Alter some LaTeX defaults for better treatment of figures:
+    % See p.105 of "TeX Unbound" for suggested values.
+    % See pp. 199-200 of Lamport's "LaTeX" book for details.
+    %   General parameters, for ALL pages:
+    \renewcommand{\topfraction}{0.9}	% max fraction of floats at top
+    \renewcommand{\bottomfraction}{0.9}	% max fraction of floats at bottom
+    \renewcommand{\textfraction}{0.01}  % allow minimal text w. figs
+    % remember to use [htp] or [htpb] for placement
+
+
+
+\begin{document}
+
+
+\title{Tiger CI User Manual}
+\author{David Krisiloff}
+\maketitle
+
+\tableofcontents
+
+
+
+\section{Introduction}\begin{flushleft}\end{flushleft}
+Weclome to Tiger CI, a program for performing multi-reference singles and doubles configuration interaction (MRSDCI) calculations. The primary feature of Tiger CI is the ability to use local correlation within MRSDCI to reduce the computational cost of MRSDCI and allow calculations on larger molecules. If at any time you have any questions about the material in this manual please feel free to contact any of the Tiger CI developers ! 
+
+\section{The Basics}
+\subsection{A (Very) Brief Overview of the theory behind Tiger CI}
+Tiger CI performs a Configuration Interaction (CI) calculation. CI is a post Hartree-Fock (HF) method which means that it is an improvement on an initial HF solution. The wavefunction is represented as a linear combination of the initial HF solution and a series excited configurations
+
+\begin{equation} \label{eq:SDCI}
+\Psi_{SDCI} = c_0\psi_0 + \sum_{i,a}c_i^a\psi_i^a + \sum_{\substack{i<j\\a<b}} c_{ij}^{ab}\psi_{ij}^{ab}
+\end{equation}  
+
+Because the wavefunction in \eqref{eq:SDCI} contains only singly and doubly excited configurations it is refered to as single and double CI (SDCI). 
+
+Tiger CI also implements a reduced scaling SDCI algorithm. (By reducing scaling we mean reducing the scaling of the computational cost of the SDCI calculation.)This employs the local electron correlation approximation to truncate equation \eqref{eq:SDCI}. Double excitations are removed from the wavefunction if they correspond to negligible long-range electron correlation. Tiger CI also employs algorithmic improvements to the handling of the 2-electron integrals, which also speeds up the calculation. With these two approaches Tiger CI is able to drastically reduce the scaling of the computational cost of the SDCI calculation while retaining accuracy. (Exact scaling varies from release to release!)
+
+\subsection{Practical Considerations}
+Now that we given a really broad overview of the science lets talk about some of the more practical details. The Tiger CI program itself is a series of Fortran 95 routines which act as a plugin to the MOLCAS quantum chemistry package. MOLCAS is asked to do a number of preliminary calculations and then the Tiger CI program performs the SDCI calculation based of MOLCAS' original results. The complete source code and all the files you need to install Tiger CI into MOLCAS are available on \emph{sesame} machine. Please see the EAC wiki page for Tiger CI for the installation instructions. 
+
+\section{The General Scheme of Things}
+Here we are going to give a basic overview of the steps required for a Tiger CI calculation and in the next section we will go through an example calculation step by step. The typical Tiger CI calculation, without any local approximations, involves the following procedures. 
+
+\begin{enumerate}
+ \item Define the molecular geometry and basis sets you want to use (MOLCAS Gateway module)
+ \item Calculate the 1-electron integrals. Cholesky Decompose the 2-electron integrals (MOLCAS Seward module)
+ \item Perform a Hartree-Fock Calculation (MOLCAS Scf module)
+ \item For a multireference calculation perform a CASSCF calculation (MOLCAS RASSCF module) 
+ \item Run Tiger CI
+\end{enumerate}
+
+\section{Your First Tiger CI Calculation}
+So lets see how these different steps work in practice. We are going to calculate the ground state energy of methane in a 6-31G** basis set. Note that I'm going to skip a lot of MOLCAS basics here. Things like setting up your work directory and other environmental variables that MOLCAS is going to need aren't going to be discussed. If you don't know what I'm referring to then please start with a MOLCAS tutorial before reading any further !
+
+Also to simplify things for this first calculation we are not going to apply any of the local truncations. So this is a nonlocal calculation and directly comparable to the result of MOLCAS' SDCI.
+
+Note the two major eccentricities in the following sections. First the MOLCAS input described here is a combination of different MOLCAS input formats. This might be a bit confusing and I apologize. Second each subsection will describe a different part of the input file, the entire input file isn't given until the Tiger CI input is described.
+
+\subsection{Defining the molecule}
+We need to tell the program what molecule we want to investigate and which basis set we are using. Lets define the molecular geometries in a file called water.xyz
+
+\begin{figure}[h!]
+	\centering
+	\begin{tabular} {l l l l}
+		3 \\
+		angstrom \\
+		O&     -0.464 &     0.177  &   0.0 \\ 
+		H&     -0.464 &     1.137  &   0.0 \\
+		H&    0.441   &     -0.143 &    0.0 \\
+	\end{tabular}
+	\caption{water.xyz}
+\end{figure}
+
+Now we can setup the MOLCAS input for Gateway. We give MOLCAS both the xyz input and the basis set we want to use. I'm also making sure that MOLCAS has defined our project name to be Water.
+
+\begin{figure}[h!]
+	\begin{tabular}{l}
+	        \textbf{$>>>$ export Project=Water} \\
+	        \textbf{ } \\
+		\textbf{\&Gateway} \\
+		\textbf{coord=water.xyz} \\
+		\textbf{basis=6-31G**} \\
+		\textbf{group=nosym} \\
+	\end{tabular}
+	\centering
+	\caption{The Gateway input}
+\end{figure}
+
+
+\subsection{Handling the electron integrals}
+% One day I might want to come back to this ... for now though I'm not going into details on the electron integrals
+
+%Now we need to handle the electron integrals. The 1-electron integrals are easy enough. In terms of the AO basis we are using (which is 6-31G** here) they can be written as 
+
+%\begin{equation}
+%	\langle \mu | \frac{1}{r} | \nu \rangle = \int \chi_{\mu}(r)\frac{1}{r}%\chi_{\nu}(r)dr
+%\end{equation}
+
+%Also included in these bunch are the overlap integrals of the form 
+%\begin{equation}
+%	\langle \mu |  \nu \rangle = \int \chi_{\mu}(r)\chi_{\nu}(r)dr
+%\end{equation}
+
+%The 2-electron integrals are more complicated. The number of 2-electron integrals grows as $O(N^4)$ 
+
+Now we need to calculate the electron integrals in the atomic orbital basis (here 6-31G**). We do this in MOLCAS by calling the SEWARD module. There are two sets of electron integrals those involving the coordinates of only 1 electron are called 1-electron integrals and those involving the coordinates of 2 electrons are called 2-electron integrals. Handling the 2-electron integrals takes a lot of effort as they grow very quickly with the number of electrons in a molecule and the size of the basis set. Therefore we use the Cholesky Decomposition to decompose the 2-electron integrals into Cholesky vectors which are easier to handle and take up less disk space. 
+
+The relevant MOLCAS keywords are CHOINPUT to indicate the start of the Cholesky Decompositon input, ENDCHOINPUT to end the Cholesky input and THRCHOLESKY which determines the numerical accuracy of the Cholesky decomposition. There are other keywords which you can use, see the MOLCAS manual for details. Since this is a nonlocal calculation we want to use a very tight Cholesky Decomposition threshold. This way the decompositon is almost exact. The threshold we are going to use is $1.0*10^{-14}$. 
+
+\begin{figure}[h!]
+	\begin{tabular}{l}
+		\textbf{\&Seward} \\
+		\textbf{ChoInput} \\
+		\textbf{ThrCholesky} \\
+		\textbf{1.0D-14} \\
+		\textbf{EndChoInput} \\
+	\end{tabular}
+	\centering
+	\caption{The Seward input}
+\end{figure}
+
+\subsection{Running the Hartree-Fock Calculation}
+Now we are ready to run a Hatree-Fock (HF) calculation. This isn't any different than any other HF calculation done in MOLCAS, we just call the SCF module. 
+
+\begin{figure}[h!]
+	\begin{tabular}{l}
+		\textbf{\&Scf} \\
+		\textbf{Occupied} \\
+		\textbf{5} \\
+	\end{tabular}
+	\centering
+	\caption{The Scf input}
+\end{figure}
+
+
+\subsection{Last few steps before Tiger}
+We are almost ready to run Tiger CI. However first we are going to need to rename a few files. This is because Tiger CI expects both the Cholesky vectors and HF orbitals to be given particular names. The orbitals you want to use in your CI calculation should always be named PIPEKO  (the origin for this will be explained when we discuss a local CI calculation). Also it is probably necessary to rename the Cholesky vector files --- although this isn't true for every MOLCAS installation. (But since I forget when it does work you are better of just doing this anyway and avoiding a possible Tiger CI crash). 
+
+Here is the input you should add before Tiger CI runs
+
+\begin{figure}[h!]
+	\begin{tabular}{l}
+		\textbf{$>>>$ LINK \$Project.ScfOrb PIPEKO} \\
+		\textbf{$>>>$ LINK \$Project.ChVec1 CHVEC1} \\
+		\textbf{$>>>$ LINK \$Project.ChRst CHORST} \\
+		\textbf{$>>>$ LINK \$Project.ChMap CHOMAP} \\
+		\textbf{$>>>$ LINK \$Project.ChRed CHRED} \\
+	\end{tabular}
+	\centering
+	\caption{Last few bits before the CI input}
+\end{figure}
+
+
+\subsection{The Tiger CI Input}
+Alright, we are now ready for the Tiger CI input! I'm going to give a brief description of some the input parameters used here, see section 6 for a more complete description. 
+
+
+%note on the TeX the weird p{6cm} forces a maximum length on the third column which in turn forces the text to wrap if it goes over --- something that doesn't occur without the max length specified
+\begin{figure}[h!]
+	\begin{tabular}{ p{5cm} | c | p{5cm} }
+		\hline
+		\textbf{Keyword} & \textbf{Value for this calculation} & \textbf{Description} \\ \hline
+		NUMBER OF ORBITALS&25 & Total number of orbitals\\ 
+		& &\\
+		NUMBER OF BASIS FUNCTIONS&25 & Total number of basis functions\\
+		& &\\ 
+		NUMBER OF ELECTRONS & 10 & Number of electrons in H$_2$O \\ 
+		& &\\
+		NUMBER OF REFERENCES& 1  & We aren't doing a MR calculation \\
+		& &\\ 
+		NUMBER OF FROZEN ORBITALS&0 &There are no frozen orbitals here \\
+		& &\\ 
+		NUMBER OF INACTIVE ORBITALS&5 & We have 5 occupied orbitals\\ 
+		& &\\
+		NUMBER OF ACTIVE ORBITALS&0 & No active orbitals with 1 reference \\ 
+		& &\\
+		SPIN MULTIPLICITY&1 & We want a singlet state \\ 
+		& &\\
+		REFERENCE OCCUPATIONS& 22222 &The occupation of inactive and active orbitals \\ 
+	\end{tabular}
+	\centering
+	\caption{Tiger CI input -- Molecular description}
+	\label{tableMolDef}
+\end{figure}
+
+
+In figure \ref{tableMolDef} are the parameters which define our H$_2$O molecule. Note that the hyphons(-) that appear due to LaTeX formatting \emph{should not} appear in your input files!
+
+
+\begin{figure}[h!] 
+	\begin{tabular}{ p{4cm} | c| p{5cm} }
+		\hline
+		\textbf{Keyword} & \textbf{Value for this calculation} & \textbf{Description} \\ \hline
+		& &\\
+		NONLOCAL& 1& 1 stands for true ... we want a nonlocal calculation \\
+		& &\\
+		ACPF FLAG&0 &Standard SDCI calculation \\
+		& &\\
+		INTEGRAL BUFFER SIZE& 500 &Sets the size of the integral buffer in MB \\ 
+		& &\\
+		RESTART FLAG& 0 & 0 for false, we are not restarting an old calculation \\  
+		& &\\
+		SCRATCH DIRECTORY& /username/scratch/whatever/ & the location of the work directory \\ \hline
+	\end{tabular}
+	\centering
+	\caption{Tiger CI input -- CI parameters}
+	\label{tableCiOptions}
+\end{figure}
+
+The next parameters in figure \ref{tableCiOptions} define a few options for the CI calculation. These include the very important NONLOCAL flag which turns off the local truncations. Please take note that the scratch directory always ends with a /.
+
+
+\begin{figure}[h!] 
+	\begin{tabular}{ l | c  }
+		\hline
+		\textbf{Keyword} & \textbf{Value for this calculation} \\ \hline
+		CSFS ONLY FLAG& 0  \\ 
+		SPECIAL CI FLAG& 1  \\ 
+		REFERENCE CI FLAG&0  \\
+		LOCAL CI FLAG& 1   \\ 
+		VIRTUAL TRUNCATION FLAG& 1 \\ 
+		DIRECT CI FLAG& 933 \\ 
+		NUMBER OF ABCD BUFFERS& 1 \\  \hline
+	\end{tabular}
+	\centering
+	\caption{Legacy and Advanced parameters}
+	\label{tableLegacy}
+\end{figure}
+
+The last few parameters are in figure \ref{tableLegacy}. These are legacy parameters and some very advanced features. Please don't change them. (In a future version of the code these will be correctly set by default in the code and you won't have to include them.)
+
+\clearpage
+\subsection{The entire input file}
+
+Here is the entire input file for our water calculation. The Tiger CI input section starts as any other MOLCAS module with \&tiger\_ci.It ends with the special keyword 'END OF TIGER VARIABLES'. Note that unlike normal MOLCAS input, inline comments are not supported ! Also notice that the order of the keywords does not matter. Finally for this example I have defined an environmental variable \$WorkDir so that at run time my scratch directory is correctly named.   
+
+\begin{figure}[h!]
+	\begin{tabular}{l}
+	        \textbf{$>>>$ export Project=Water'} \\
+	        \textbf{ } \\
+		\textbf{\&Gateway} \\
+		\textbf{coord=water.xyz} \\
+		\textbf{basis=6-31G**} \\
+		\textbf{group=nosym} \\
+		\textbf{ } \\
+		\textbf{\&Seward} \\
+		\textbf{ChoInput} \\
+		\textbf{ThrCholesky} \\
+		\textbf{1.0D-14} \\
+		\textbf{EndChoInput} \\
+		\textbf{ } \\
+		\textbf{\&Scf} \\
+		\textbf{Occupied} \\
+		\textbf{5} \\
+		\textbf{ } \\
+		\textbf{$>>>$ LINK \$Project.ScfOrb PIPEKO} \\
+		\textbf{$>>>$ LINK \$Project.ChVec1 CHVEC1} \\
+		\textbf{$>>>$ LINK \$Project.ChRst CHORST} \\
+		\textbf{$>>>$ LINK \$Project.ChMap CHOMAP} \\
+		\textbf{$>>>$ LINK \$Project.ChRed CHRED} \\
+	\end{tabular}
+	\centering
+\end{figure}
+\begin{figure}[h!]
+	\begin{tabular}{l}
+		\textbf{\&Tiger\_CI}  \\
+		\textbf{RESTART FLAG } \\
+		\textbf{0 } \\
+		\textbf{NUMBER OF ORBITALS } \\
+		\textbf{25 } \\
+		\textbf{NUMBER OF BASIS FUNCTIONS } \\
+		\textbf{25 } \\
+		\textbf{CSFS ONLY FLAG } \\
+		\textbf{0 } \\
+		\textbf{SPECIAL CI FLAG } \\
+		\textbf{1 } \\
+		\textbf{REFERENCE CI FLAG } \\
+		\textbf{0 } \\
+		\textbf{LOCAL CI FLAG } \\
+		\textbf{1} \\
+		\textbf{VIRTUAL TRUNCATION FLAG } \\
+		\textbf{1 } \\
+		\textbf{DIRECT CI FLAG } \\
+		\textbf{933 } \\
+		\textbf{NUMBER OF FROZEN ORBITALS } \\
+		\textbf{0 } \\
+		\textbf{NUMBER OF INACTIVE ORBITALS} \\
+		\textbf{5 } \\
+		\textbf{NUMBER OF ACTIVE ORBITALS } \\
+		\textbf{0 } \\
+		\textbf{SPIN MULTIPLICITY } \\
+		\textbf{1 } \\
+		\textbf{NUMBER OF ELECTRONS } \\
+		\textbf{10 } \\
+		\textbf{NUMBER OF REFERENCES } \\
+		\textbf{1 } \\
+		\textbf{REFERENCE OCCUPATIONS } \\
+		\textbf{22222 } \\
+		\textbf{SCRATCH DIRECTORY } \\
+		\textbf{\$WorkDir/ } \\
+		\textbf{NUMBER OF ABCD BUFFERS } \\
+		\textbf{1 } \\
+		\textbf{ACPF FLAG } \\
+		\textbf{0 } \\
+		\textbf{NONLOCAL } \\
+		\textbf{1} \\
+		\textbf{END OF TIGER VARIABLES } \\	
+	\end{tabular}
+	\centering
+\end{figure}
+
+
+\clearpage
+
+
+\subsection{Reading the Tiger CI Output}
+-- I promise I'll get to this eventually --
+
+\section{Your first local CI calculation with Tiger CI}
+-- I promise I'll get to this eventually --
+
+\section{The complete description of all Tiger CI input parameters}
+
+Here is a listing of all the Tiger CI input flags. Before we begin a few notes
+\begin{enumerate}
+	\item Some keywords have been denoted \emph{Legacy Keyword}. Please only use the suggested values for these keywords.
+	\item All keywords which take real numbers should have an input of the form X.XD(+/-)XX, or at the very least contain a decimal point. \emph{Real inputs without a decimal points have been known to cause issues with some compilers.}
+	\item Some keywords have \emph{Default} values. If the keyword is not included in the input file then this value is used. If the default value is undefined then the keyword \textbf{must} be specified.
+	\item The last few keywords at the end have been marked \textbf{To Be Removed}. They will eventually be removed from the code altogether and probably refer to code whose functionality was broken a long time ago. Use at your own risk. 
+\end{enumerate}
+
+
+
+\begin{description}
+
+	\item[VIRTUAL TRUNCATION FLAG] \hfill \\
+	\emph{Default:} 0 \hfill \\
+	Logical flag: 1 (on) or 0 (off). Controls the Truncation of Virtuals (TOV) approximation.
+	
+	\item[RESTART FLAG] \hfill \\
+	\emph{Default:} 0 \hfill \\
+	Logical flag: 1 (on) or 0 (off). Turns on the restart feature which restarts a partially completed Davidson diagonalization. Note that the ci\_final file from the previous calculation is required and that none of the Cholesky Decomposition steps are as of yet restartable.
+
+	\item[NUMBER OF ORBITALS] \hfill \\
+	\emph{Default:} Undefined \hfill \\
+	An integer value that specifies the total number of molecular orbitals. 
+	
+	\item[NUMBER OF BASIS FUNCTIONS ] \hfill \\
+	\emph{Default:} Undefined \hfill \\
+	An integer value that specifies the total number of basis functions. 
+	
+	\item[NUMBER OF FROZEN ORBITALS ] \hfill \\
+	\emph{Default:} 0 \hfill \\
+An integer value that specifies the number of molecular orbitals to be frozen in the CI calculation, i.e., the electrons within these orbitals will not be correlated. The program will freeze the specified number of orbitals beginning from the first orbital listed in the MO coefficient file. 
+
+	\item[NUMBER OF INACTIVE ORBITALS ] \hfill \\
+	\emph{Default:} Undefined \hfill \\
+        An integer value for the number of configurations which are doubly occupied in all the references. This includes all the occupied orbitals as well as the frozen orbitals. 
+        
+        \item[NUMBER OF ACTIVE ORBITALS ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        An integer value for the number of configurations whose have variable occupation in the different references.  
+        
+        \item[SPIN MULTIPLICITY ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        An integer value for the spin multiplicity $(2S+1)$ of the system.
+       
+        \item[NUMBER OF ELECTRONS ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        An integer value for the total number of electrons
+        
+        \item[NUMBER OF REFERENCES ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        An integer value for the total number of references. 
+        
+        \item[REFERENCE ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        This keyword defines the occupation of each of the reference configurations. Each reference is defined by providing the occupation number (0, 1, or 2) for all the occupied and active orbitals. One reference is defined per line. For example if a calculation had 3 occupied orbitals, 2 active orbitals then the references would be defined as: \hfill \\
+        \hfill \\
+        \textbf{REFERENCE} \hfill \\
+        22220 \hfill \\
+        22202 \hfill \\
+        22211
+                
+        Note the occupation of any frozen orbitals (which is by definition 2) must also be specified. The exact syntax is occupation of frozen, occupation of occupied and then the occupation of the active oribtals. 
+
+        \item[LOCAL CI FLAG ] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \emph{Default:} 0 \hfill \\
+        Logical flag: 1 (on) or 0 (off). Used to turn on/off local correlation truncations. \textbf{Please always set to 1, even for nonlocal calculations.}
+        
+        \item[VALENCE CI FLAG ] \hfill \\
+        \emph{Legacy Keyword}   \hfill \\
+        Logical flag: 1 (on) or 0 (off). When used runs a (MR)SDCI calculation within the valence space.
+        
+        \item[DIRECT CI FLAG ] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        Honestly I don't know what this does. Always set it to 933. ? 
+        
+     	\item[LOCAL ORTHO MOS] \hfill \\
+     	\emph{Legacy Keyword}  \hfill \\
+     	\emph{Default:} 0 \hfill \\
+     	Logical flag: 1 (on) or 0 (off). Turn on when using Local Orthogonal Virtual Orbitals (LOVOs) or any other set of orbitals which are orthogonal in the virtual space.
+     	
+     	
+        \item[SCRATCH DIRECTORY ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        Defines the path where Tiger CI will store scratch files. This directory must exist before Tiger CI starts and include all the previous MOLACS files from GAETWAY, SEWARD, etc...
+
+        \item[INTEGRAL BUFFER SIZE ] \hfill \\
+        \emph{Legacy Keyword}        \hfill \\
+        \emph{Default:} 100 \hfill \\
+        An integer representing the space (in 8 bit words) in RAM for storing the 2-electron integrals. Leave as 500 unless working with a very strict memory requirement. 
+        
+        \item[CD THRESHOLD ] \hfill \\
+        \emph{Default:} $1.0*10^{-12}$ \hfill \\
+        A real number which specifies the Cholesky Decomposition threshold.
+        
+        \item[CD BUFFER ] \hfill \\
+        \emph{Default:} 100,000,000 \hfill \\
+        An integer which specifies the amount of memory (in bytes) used in the Cholesky Decomposition processing. 
+        
+        \item[NUMBER OF ABCD BUFFERS ] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \emph{Default:} 1 \hfill \\
+        An integer that defines the number of $(ab|cd)$ integral matricies which are read in at a time. Please set to 1. 
+        
+        \item[ACPF FLAG] \hfill \\
+        \emph{Default:} 0 \hfill \\
+        An integer that controls the usage of \emph{a priori} size extensivity corrections.
+        \begin{description} 
+        	\item[0] Normal (MR)SDCI calculation
+        	\item[1] Averaged Coupled-Pair Functional (ACPF)
+        	\item[2] ACPF-2
+  		\item[3] Averaged Quadratic Coupled-Cluster (AQCC)       
+        \end{description}
+        
+        
+        \item[DIAG\_OPT] \hfill \\
+        \emph{Default:} 1 \hfill \\
+        An integer which controls diagonalization routine options -- primarily for solving excited states.
+        \begin{description} 
+        	\item[1] Normal Davidsion routine. Ground-state only. 
+        	\item[2] Block Davidson method for calculating the several CI roots concurrently. The number of concurrent roots to be found should be specified using \textbf{NUM\_ROOTS}. 
+  		\item[3] Modified Davidson scheme using oblique projection. 
+  		\item[4] RMM-DIIS for excited states.       
+        \end{description}
+        
+        \item[OCCUPATION THRESHOLD ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        Real number used to define the occupation threshold demarcating the extent of a sphere associated with an internal orbital. Suggested value is 0.8.
+        
+        \item[WP DEFAULT RADIUS ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        Real number used to define the minimum radius (in bohrs) for the spheres associated with internal orbitals used in the weak pairs (WP) approximation. Suggested value is 0.8.
+        
+        \item[TOV OCCUPIED DEFAULT RADIUS] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        Real number used to define the minimum radius (in bohrs) for the spheres associated with internal orbitals used in truncation of virtuals (TOV) approximation. Suggested value is 0.8 
+        
+        \item[WP RADIUS MULTIPLIER] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        Real number used to adjust the sphere size belonging to internal orbitals in WP approximation. Suggested value is 1.2. 
+        
+        \item[VIRTUAL OCCUPATION THRESHOLD] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        Real number used to define the occupation threshold demarcating the extent of a sphere associated with an external orbital. Suggested value is 0.8.
+        
+        \item[TOV VIRTUAL DEFAULT RADIUS ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        Real number used to define the minimum radius (in bohrs) for the spheres associated with external orbitals used in TOV approximation. Suggested value is 0.8.
+        
+        \item[TOV OCCUPIED RADIUS MULTIPLIER ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        Real number used to adjust the sphere size belonging to internal orbitals in TOV approximation. Suggested value is 1.2.
+        
+        \item[TOV VIRTUAL RADIUS MULTIPLIER ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        Real number used to adjust the sphere size belonging to external orbitals in TOV approximation. Suggested value is 1.5. 
+        
+        \item[TOV CYLINDER RADIUS ] \hfill \\
+        \emph{Default:} Undefined \hfill \\
+        Real number used define the radii (in bohrs) of cylinders associated with active orbitals. Suggested value is 2.0.
+        
+        
+       	\item[NONLOCAL] \hfill \\
+       	\emph{Default:} 0 \hfill \\
+       	Logical flag: 1 (on) or 0 (off). If turned on runs a nonlocal calculation by extending all the local truncation and integral screening such that the calculation does not actually screen or truncate anything. Inefficient but the only way to run a nonlocal calculation (currently). Effectively works by altering a number of input parameters. All changed parameters are ouputed to the user.
+        
+        \item[HETEROATOM ] \hfill \\\
+        If used this keyword allows the user to  define a different radii for orbitals localized on heteroatoms.  
+        \hfill \\
+        \hfill \\
+        The first line after \textbf{HETEROATOM} must be the number of orbitals whose default radii is changing. The second line contains the orbital numbers. The third line contains the new default radii value. For example if orbitals 1, 2, and 3 are to recieve the new default radii of 2.37 bohr then the input is 
+        \hfill \\
+        \textbf{HETEROATOM} \hfill \\
+        3 \hfill \\
+        1 2 3 \hfill \\
+        2.37 \hfill \\
+        
+        
+        \item[ENERGY TOLERANCE] \hfill \\
+        \emph{Default:} $1.0*10^{-9}$ \hfill \\
+        A real number which sets the energy tolerance for the Davidson diagonalization scheme. This includes the traditional Davidson, generalized Davidson for ACPF and the excited state solvers. 
+        
+        \item[RESIDUAL TOLERANCE] \hfill \\
+        \emph{Default:} $1.0*10^{-9}$ \hfill \\
+        A real number which sets the tolerance for residual of the norm for the Davidson diagonalization scheme. This includes the traditional Davidson, generalized Davidson for ACPF and the excited state solvers. 
+        
+        \item[SPECIAL CI FLAG] \hfill \\
+        \emph{Default:} 0 \hfill \\
+        Logical flag: 1 (on) or 0 (off). Used if only a selected number of configurations are to be used from a restarted run in a local or valence CI. Use with caution.
+        
+        \item[NUM\_ROOTS] \hfill \\
+        \emph{Default:} 1 \hfill \\
+        An integer representing the number of states to solve for in the block Davidson excited state solver. 
+        
+        \item[ROOT\_NUM] \hfill \\
+        \emph{Default:} 1 \hfill \\
+        An integer representing the root to solve for with the Modified Davidson scheme using oblique projection. 
+ 
+        \item[REFERENCE CI FLAG] \hfill \\
+        \emph{Default:} 0 \hfill \\
+        Logical flag: 1 (on) or 0 (off). Perform a CI calculation only in the reference space
+        
+        \item[NATURAL ORBITAL FLAG] \hfill \\
+        \emph{Default: } 0 \hfill \\
+        Logical flag: 1 (on) or 0 (off). Generates the natural orbitals from the completed calculation. 
+        
+        \item[GVB PERFECT PAIRING CI FLAG] \hfill \\
+        \emph{Default:} 0 \hfill \\
+        Logical flag: 1 (on) or 0 (off). Run a Generalized Valence Bond with Perfect Pairing calulation
+
+       \item[LargeCholeskyVecDistanceCutOff] \hfill \\
+        \emph{Default:} .False. \hfill \\
+        Used to replicate the effect of nonlocal keyword -- please don't use this.
+        (Added for Victor)
+        
+        \item[TwoSegFlag] \hfill \\
+        \emph{Default:} $1.0*10^{-12}$ \hfill \\
+        Used to replicate the effect of nonlocal keyword -- please don't use this.
+        (Added for Victor)
+        
+        \item[CSFS FROM RESTART FLAG] \hfill \\
+        \emph{Default:} 0 \hfill \\
+         Logical flag: 1 (on) or 0 (off). Uses the CSFS from a previous calculation instead of recalculating them.
+        
+        \item[CSFS FROM ALT FLAG] \hfill \\
+        \emph{Default:} 0 \hfill \\
+        Logical flag: 1 (on) or 0 (off). Read the CSFS from a previous run off an alternative file instead of the default. Useful if reading CSFS from one previous calculation and CI coefficients from another. Use the \textbf{ALTERNATE CSF FILE flag} to specify the name of the alternative file
+       
+         \item[ALTERNATE CSF FILE] \hfill \\ 
+         Contains the name of the file containing old CSFS definitions.
+
+        \item[CSFS ONLY FLAG] \hfill \\
+        \emph{Default:} 0 \hfill \\
+        \textbf{To Be Removed} \hfill \\
+        Used to do something ... now just causes the program to exit.
+        
+        \item[NUMBER OF CORRELATED ELECTRONS] \hfill \\
+        \emph{Default:} 0 \hfill \\
+        \textbf{To Be Removed} \hfill \\
+        An integer value representing the number of correlated electrons.
+        
+        \item[AO INTEGRAL THRESHOLD] \hfill \\
+        \emph{Default:} $0.0$ \hfill \\
+        \textbf{To Be Removed}
+        
+        \item[AO DISTANCE THRESHOLD] \hfill \\
+        \emph{Default: } 100 \hfill \\
+        \textbf{To Be Removed}
+        
+ 
+        \item[NUM\_STO-3G] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \textbf{To Be Removed}
+        \item[PSEUDOSPECTRAL FLAG] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \textbf{To Be Removed}
+        \item[MAX IJAB INTERACTIONS] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \textbf{To Be Removed}
+        \item[LINKED BY ACTIVES FLAG] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \textbf{To Be Removed}
+        \item[TOTAL NUMBER OF GRID POINTS] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \textbf{To Be Removed}
+        \item[GRID POINT BUFFER SIZE] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \textbf{To Be Removed}
+        \item[ACPF TEST FLAG] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \textbf{To Be Removed}
+        \item[ACPF SR FLAG] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \textbf{To Be Removed}
+        \item[ACPF MR FLAG] \hfill \\
+        \emph{Legacy Keyword} \hfill \\
+        \textbf{To Be Removed} 
+\end{description}
+\end{document}

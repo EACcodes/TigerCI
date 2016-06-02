@@ -1,0 +1,50 @@
+basis.cpp			changes in r2732 by Francis: commented debugging output. Not relevant anymore?
+basis.h				no changes
+basislibrary.cpp		changes in r2943 by David: custom basis library location, JMD: remove timer functionality.
+basislibrary.h			no changes
+boys.cpp			no changes
+boys.h				no changes
+chebyshev.cpp			no changes
+chebyshev.h			no changes
+custom_basis_library.h		our file
+custom_basis_library.h.in	our file
+density_fitting.cpp		no changes
+density_fitting.h		changes in r2803 by David: makes ab_invh protected for subroutine use
+elements.cpp			no changes
+elements.h			no changes
+erifit.cpp			no changes
+erifit.h			no changes
+eriscreen.cpp			changes by Johannes: remove timer functionality
+eriscreen.h			no changes
+eritable.cpp			changed in r2729 and 2848 by Francis: whitespace and changing some paths of the .in file. Not relevant anymore?
+eritable.h			changed in r2729 and 2848 by Francis: first added an outfile, then removed the outfile. Not relevant anymore.
+eriworker.h			no changes
+eriworker_gentransform.cpp	changed in r2848 by Francis: commented a lot of code (basically the entire file)
+eriworker.cpp			changed by Francis, David and Johannes: added output from gentransform at top of file
+eri_digest.cpp			no changes
+eri_digest.h			no changes
+global.h			no changes
+integrals.cpp			no changes
+integrals.h			no changes
+lebedev.cpp			no changes
+lebedev.h			no changes
+linalg.cpp			no changes
+linalg.h			no changes
+lobatto.cpp			no changes
+lobatto.h			no changes
+mathf.cpp			no changes
+mathf.h				no changes
+module.mk			no changes
+obara-saika.cpp			no changes
+obara-saika.h			no changes
+scf.h				changed in r2797 by David: commented the entire file 
+settings.cpp			changed in r2797 by David: commented routines depending on removed include file
+settings.h			changed in r2683 by Francis: commented void parse function
+solidharmonics.cpp		no changes
+solidharmonics.h		no changes
+stringutil.cpp			no changes
+stringutil.h			no changes
+xyzutils.cpp			no changes
+xyzutils.h			no changes
+zmatrix.cpp			no changes
+zmatrix.h			no changes

@@ -1,0 +1,27 @@
+#! /bin/sh
+# A simple regression tester for the Tiger CI code
+# expects 2 arguments - the location of the molcas install with Tiger CI
+#                     - the number of threads to be used
+set -e && set -u
+TIGER=$1
+THREADS=$2
+export ERKALE_LIBRARY=$(pwd)/../tiger_ci/erkale/basis/
+set +e && set +u
+
+tests=`ls ./Tests`
+here=`pwd`
+for i in $tests
+do
+	cd Tests/$i
+	timeout 10m ./driver.sh $TIGER $THREADS
+	result=$?
+	if [ $result -ne 0 ]
+	then
+		echo "FAILED TEST"
+		exit 2
+	fi
+	cd $here
+done
+
+echo " "
+echo "All tests passed :)"

@@ -1,0 +1,12 @@
+#ifndef CUSTOM_BASIS_LIBRARY_DEF
+#define CUSTOM_BASIS_LIBRARY_DEF
+
+#include <string>
+
+std::string custom_basis_library();
+
+std::string custom_basis_library(){
+    return "@ERKALE_BASIS_LOCATION@";
+}
+
+#endif

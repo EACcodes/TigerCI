@@ -1,0 +1,1 @@
+CPPSRC += $(wildcard erkale/*.cpp)

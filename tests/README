@@ -1,0 +1,15 @@
+regression_tester is a very simple script designed to quickly run a few tiger calculations 
+and look for any issues. 
+
+This folder contains:
+---------------------
+
+(1) Benchmarks/ directory. Contains all the input files used to generate the results in 
+    results.csv
+
+(2) Tests/ contains all the input files for Tiger to run the test calculations. Each test 
+    has a driver script (driver.sh) which runs the test, checks the output and proudces
+    some output indicating the result.
+
+(3) regression_tester is a simple script to run the test calculations and then check the 
+    accuracy.

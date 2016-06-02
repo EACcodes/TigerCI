@@ -1,0 +1,1388 @@
+
+***********************************************************************************************************************************
+* TiguarCI - A Local Multireference Symmetric Group Graphical Approach Singles and Doubles Configuration Interaction Program.
+* This code is a hybrid of C++11 and Fortran2003 which is based on TigerCI
+* Written by: Francis Ricci and David Krisiloff
+***********************************************************************************************************************************
+
+
+Keyword                                 Value
+-------                                 -----
+ACPF FLAG                               0
+AIJK MEMORY                             10
+AO INTEGRAL THRESHOLD                   1e-14
+AUXILIARY BASIS SET                     
+BASIS SET                               aug-cc-pVDZ
+CARTESIAN                               0
+CD MEMORY                               1000
+CD RESTART                              0
+CD THRESHOLD                            1e-06
+CD VECTORS IN MEMORY                    0
+CUSTOM G VAL                            1
+CYLINDER RADIUS                         2
+CYLINDERS                               Not defined
+DAVIDSON HARD DRIVE SPACE               30
+DENSITY FITTING                         0
+DONTSTORECDVECS                         0
+DONTSTOREINTS                           0
+ENERGY TOLERANCE                        1e-06
+FULLY INTEGRAL DIRECT MODE              0
+INT MEMORY                              500
+INTEGRAL DIRECT MODE                    0
+INTEGRAL THRESHOLD                      1e-12
+IOBUFFBLOCKINTS                         10
+IOBUFFBLOCKSEGS                         10
+IOBUFFMAXMEMCD                          500
+IOBUFFMAXMEMINTS                        500
+IOBUFFMAXMEMSEGS                        50
+LOW MEMORY DIRECT                       0
+NATURAL ORBITAL FLAG                    0
+NO ACPF ROOT FOLLOW                     0
+NONLOCAL                                1
+NUM ROOTS                               1
+NUM THREADS                             8
+NUMBER OF ACTIVE ORBITALS               4
+NUMBER OF BASIS FUNCTIONS               82
+NUMBER OF ELECTRONS                     16
+NUMBER OF FROZEN ORBITALS               6
+NUMBER OF INACTIVE ORBITALS             6
+NUMBER OF ORBITALS                      82
+NUMBER OF REFERENCES                    13
+OCCUPATION THRESHOLD                    0.8
+ORB FILE                                Ethylene_HighSpin.molden
+PEDERSEN CD                             0
+REFERENCE CI FLAG                       0
+REFERENCE OCCUPATIONS                   2222220211
+                                        2222222011
+                                        2222221102
+                                        2222220112
+                                        2222221201
+                                        2222222101
+                                        2222221210
+                                        2222221120
+                                        2222220121
+                                        2222221021
+                                        2222222110
+                                        2222221012
+                                        2222221111
+RESIDUAL TOLERANCE                      1e-06
+RESTART FLAG                            0
+ROOT FOLLOW HELP                        0
+SCRATCH DIRECTORY                       /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir/
+SKIP INACTIVE PM                        0
+SKIP LOVOS                              0
+SPHERE PRINT                            0
+SPIN MULTIPLICITY                       3
+STRIDE SIZE CI                          32
+STRIDE SIZE SIGMA                       32
+SUPER LOW MEMORY DIRECT                 0
+TOV CYLINDER RADIUS                     2
+TOV OCCUPIED DEFAULT RADIUS             2.65
+TOV OCCUPIED RADIUS MULTIPLIER          1.95
+TOV VIRTUAL DEFAULT RADIUS              2.65
+TOV VIRTUAL RADIUS MULTIPLIER           2
+TwoSegFlag                              1e-12
+VALENCE CI FLAG                         0
+VIRTUAL OCCUPATION THRESHOLD            0.8
+WP DEFAULT RADIUS                       2.65
+WP RADIUS MULTIPLIER                    1.7
+XYZ FILE                                Ethylene_HighSpin.xyz
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+WARNING NONLOCAL FLAG DETECTED .... 
+THE FOLLOWING PARAMETERS ARE BEING  
+READJUSTED TO PERFORM A NONLOCAL    
+CALCULATION. USER INPUTS MAY BE     
+OVERWRITTEN                         
+
+INTEGRAL THRESHOLD SET TO                    0.0
+OCCUPATION THRESHOLD SET TO                 .999
+PAO OCCUPATION THRESHOLD SET TO             .999
+DEFAULT RADIUS SET TO                10000000.D0
+DEFAULT RADIUS MULTIPLIER SET TO     10000000.D0
+MO DEFAULT RADIUS SET TO             10000000.D0
+MO DEFAULT RADIUS MULTIPLIER SET TO  10000000.D0
+TOV DEFAULT RADIUS SET TO            10000000.D0
+TOV RADIUS MULTIPLIER SET TO         10000000.D0
+PAO RADIUS SET TO                    10000000.D0
+PAO RADIUS MULTIPLIER SET TO         10000000.D0
+CYLINDER RADIUS SET TO               10000000.D0
+TOV CYLINDER RADIUS SET TO           10000000.D0
+LargeCholeskyVecDistanceCutOff is true          
+TwoSegFlag                               1.0D-15
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Running with OpenMP using 8 threads
+
+Reading molecular orbitals from Ethylene_HighSpin.molden
+  Molden file contains sections: [mo] [charge] [gto] [5d] [atoms] [n_atoms] [molden format] 
+  Nuclei are consistent
+  Built the basis function permutation
+  Finished reading in 82 molecular orbitals represented in 82 atomic orbitals
+
+Molecular orbitals are normalized and orthogonal!
+
+*********************************
+*                                
+*   Cholesky decomposition       
+*   Fully pivoted                
+*                                
+*********************************
+
+ Prescreening threshold      = 2.8495e-13
+ Basis pairs                 = 3403
+ Basis pairs after screening = 3403
+
+ (ij|kl) evaluations wall time(s): 0.612 cpu time(s): 4.88
+ Cholesky decomposition threshold = 1e-06
+ Number of cholesky vectors = 522
+ total two-electron integral cholesky decomposition wall time(s): 0.871 cpu time(s): 6.95
+
+
+*********************************
+*                                       
+*   AO->MO Cholesky Transform    
+*                                       
+*********************************
+
+ step 1 wall time(s): 0.014 cpu time(s): 0.03
+ step 2 wall time(s): 0.093 cpu time(s): 0.75
+ step 3 wall time(s): 0.033 cpu time(s): 0.26
+ AO->MO Cholesky Transform B wall time(s): 0.141 cpu time(s): 1.04
+ Roughly max memory usage (MB) = 120
+
+**********************
+Entering Fortran...
+**********************
+
+ Finished importing global variables
+
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !//                              
+ !// TIGER CI IS USING THE FOLLOWING INPUT PARAMETERS         
+ !//                              
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ NUMBER OF ORBITALS                                   82
+ ENERGY TOLERANCE                   1.000000000000000E-006
+ RESIDUAL TOLERANCE                 1.000000000000000E-006
+ VALENCE CI FLAG                   F
+ RESTART FLAG                      F
+ NUMBER OF BASIS FUNCTIONS                            82
+ NUMBER OF FROZEN ORBITALS                             6
+ NUMBER OF INACTIVE ORBITALS                           6
+ NUMBER OF ACTIVE ORBITALS                             4
+ SPIN MULTIPLICITY                                     3
+ NUMBER OF ELECTRONS                                  16
+ NUMBER OF REFERENCES                                 13
+ NATURAL ORBITAL FLAG              F
+ INTEGRAL THRESHOLD                 0.000000000000000E+000
+ AO INTEGRAL THRESHOLD              1.000000000000000E-015
+ WP DEFAULT RADIUS                   10000000.0000000     
+ TOV OCCUPIED DEFAULT RADIUS         10000000.0000000     
+ TOV OCCUPIED RADIUS MULTIPLIER      10000000.0000000     
+ WP RADIUS MULTIPLIER                10000000.0000000     
+ VIRTUAL OCCUPATION THRESHOLD       0.999000000000000     
+ TOV VIRTUAL DEFAULT RADIUS          10000000.0000000     
+ TOV VIRTUAL RADIUS MULTIPLIER       10000000.0000000     
+ TOV CYLINDER RADIUS                 10000000.0000000     
+ REFERENCE CI FLAG                 F
+ CYLINDER RADIUS                     10000000.0000000     
+ ACPF FLAG                                             0
+ CD THRESHOLD                       1.000000000000000E-006
+ CD BUFFER                                     131072000
+ MAX MEM SEGS                                   52428800
+ INT MEMORY                                     65536000
+ NONLOCAL                          T
+ NUM_ROOTS                                             1
+ TwoSegFlag                         1.000000000000000E-015
+ Sphere Print                      F
+ CD RESTART                        F
+ USE ACPF ROOT FOLLOW              T
+ USE ACPF REF ENERGY               F
+ SCRATCH DIRECTORY                
+ /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//
+ INTEGRAL DIRECT MODE              F
+ FULLY INTEGRAL DIRECT MODE        F
+ LOW MEMORY DIRECT                 F
+ CD VECTORS IN MEMORY              F
+ CPP_DECOMPOSED_INTS               T
+ Number of references...........   13
+      Reference #    1
+       2 2 2 2 2 2 0 2 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #    2
+       2 2 2 2 2 2 2 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #    3
+       2 2 2 2 2 2 1 1 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #    4
+       2 2 2 2 2 2 0 1 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #    5
+       2 2 2 2 2 2 1 2 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #    6
+       2 2 2 2 2 2 2 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #    7
+       2 2 2 2 2 2 1 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #    8
+       2 2 2 2 2 2 1 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #    9
+       2 2 2 2 2 2 0 1 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #   10
+       2 2 2 2 2 2 1 0 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #   11
+       2 2 2 2 2 2 2 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #   12
+       2 2 2 2 2 2 1 0 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+      Reference #   13
+       2 2 2 2 2 2 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 
+ 
+ *******************************
+ Calling Tiger CI...
+ *******************************
+ 
+
+
+!******************************************************************!
+!//  Tiger CI - A LOCAL MULTIREFERENCE SYMMETRIC GROUP GRAPHICAL   !
+!//  APPROACH SINGLES AND DOUBLES CI PROGRAM.  BASED ON THE WORK   !
+!//  DUCH AND KARWOWSKI.                                           !
+!//                                                                !
+!//  W. DUCH; J. KARWOWSKI COMPUTER PHYSICS REPORTS 2(1985) 93-170 !
+!//                                                                !
+!//  WRITTEN BY: DEREK WALTER                                      !
+!//              ANDREW SZILVA                                     !
+!//              ARUN VENKATHANATHAN                               !
+!//              JEREMY CHWEE                                      !
+!//              DAVID KRISILOFF                                   !
+!//              LEAH ISSEROFF                                     !
+!//              TING TAN                                          !
+!//                                                                !
+!//  WRITTEN AT: PRINCETON UNIVERSITY  AND UCLA                    !
+!//  $Revision: 3169 $,                                            !
+!//  $Date: 2015-03-23 16:05:17 -0400 (Mon, 23 Mar 2015) $         !
+!******************************************************************!
+
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !//                              
+ !// ENTERED MOLECULAR ORBITALS   
+ !//                              
+ !//                              
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ Checking orbital norms ...
+ 
+ Molecular orbitals are normalized and orthogonal!
+
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !//                              
+ !// ENTERED SPHERE/CYLINDER      
+ !//       SETUP                  
+ !//                              
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ 
+ 
+ 
+ Sphere/Cylinder setup complete. 
+ All radii are in bohr
+ (1) Weak Pair Spheres 
+ ------------------------------------------------------------------
+ | Orbital |   Radius    |    Atoms in the sphere 
+ ------------------------------------------------------------------
+ |        1|     0.59E+08|     1     2     3     4     5     6 
+ |        2|     0.40E+08|     1     2     3     4     5     6 
+ |        3|     0.59E+08|     1     2     3     4     5     6 
+ |        4|     0.59E+08|     1     2     3     4     5     6 
+ |        5|     0.59E+08|     1     2     3     4     5     6 
+ |        6|     0.59E+08|     1     2     3     4     5     6 
+ |        7|     0.26E+08|     1     2     3     4     5     6 
+ |        8|     0.40E+08|     1     2     3     4     5     6 
+ |        9|     0.26E+08|     1     2     3     4     5     6 
+ |       10|     0.59E+08|     1     2     3     4     5     6 
+  
+ (2) Weak Pair Cylinders 
+ ------------------------------------------------------------------
+ | Orbital |   Radius    |    Atoms in the cylinder 
+ ------------------------------------------------------------------
+  
+ (3) Truncation of Virtuals Spheres 
+ ------------------------------------------------------------------
+ | Orbital |   Radius    |    Atoms in the sphere 
+ ------------------------------------------------------------------
+ |        1|     0.59E+08|     1     2     3     4     5     6 
+ |        2|     0.40E+08|     1     2     3     4     5     6 
+ |        3|     0.59E+08|     1     2     3     4     5     6 
+ |        4|     0.59E+08|     1     2     3     4     5     6 
+ |        5|     0.59E+08|     1     2     3     4     5     6 
+ |        6|     0.59E+08|     1     2     3     4     5     6 
+ |        7|     0.26E+08|     1     2     3     4     5     6 
+ |        8|     0.40E+08|     1     2     3     4     5     6 
+ |        9|     0.26E+08|     1     2     3     4     5     6 
+ |       10|     0.59E+08|     1     2     3     4     5     6 
+ |       11|     0.59E+08|     1     2     3     4     5     6 
+ |       12|     0.59E+08|     1     2     3     4     5     6 
+ |       13|     0.59E+08|     1     2     3     4     5     6 
+ |       14|     0.59E+08|     1     2     3     4     5     6 
+ |       15|     0.26E+08|     1     2     3     4     5     6 
+ |       16|     0.26E+08|     1     2     3     4     5     6 
+ |       17|     0.10E+08|     1     2     3     4     5     6 
+ |       18|     0.26E+08|     1     2     3     4     5     6 
+ |       19|     0.10E+08|     1     2     3     4     5     6 
+ |       20|     0.10E+08|     1     2     3     4     5     6 
+ |       21|     0.10E+08|     1     2     3     4     5     6 
+ |       22|     0.10E+08|     1     2     3     4     5     6 
+ |       23|     0.59E+08|     1     2     3     4     5     6 
+ |       24|     0.59E+08|     1     2     3     4     5     6 
+ |       25|     0.59E+08|     1     2     3     4     5     6 
+ |       26|     0.59E+08|     1     2     3     4     5     6 
+ |       27|     0.59E+08|     1     2     3     4     5     6 
+ |       28|     0.59E+08|     1     2     3     4     5     6 
+ |       29|     0.59E+08|     1     2     3     4     5     6 
+ |       30|     0.59E+08|     1     2     3     4     5     6 
+ |       31|     0.59E+08|     1     2     3     4     5     6 
+ |       32|     0.59E+08|     1     2     3     4     5     6 
+ |       33|     0.59E+08|     1     2     3     4     5     6 
+ |       34|     0.59E+08|     1     2     3     4     5     6 
+ |       35|     0.59E+08|     1     2     3     4     5     6 
+ |       36|     0.59E+08|     1     2     3     4     5     6 
+ |       37|     0.59E+08|     1     2     3     4     5     6 
+ |       38|     0.59E+08|     1     2     3     4     5     6 
+ |       39|     0.59E+08|     1     2     3     4     5     6 
+ |       40|     0.59E+08|     1     2     3     4     5     6 
+ |       41|     0.59E+08|     1     2     3     4     5     6 
+ |       42|     0.26E+08|     1     2     3     4     5     6 
+ |       43|     0.26E+08|     1     2     3     4     5     6 
+ |       44|     0.59E+08|     1     2     3     4     5     6 
+ |       45|     0.26E+08|     1     2     3     4     5     6 
+ |       46|     0.26E+08|     1     2     3     4     5     6 
+ |       47|     0.26E+08|     1     2     3     4     5     6 
+ |       48|     0.26E+08|     1     2     3     4     5     6 
+ |       49|     0.26E+08|     1     2     3     4     5     6 
+ |       50|     0.40E+08|     1     2     3     4     5     6 
+ |       51|     0.26E+08|     1     2     3     4     5     6 
+ |       52|     0.10E+08|     1     2     3     4     5     6 
+ |       53|     0.10E+08|     1     2     3     4     5     6 
+ |       54|     0.26E+08|     1     2     3     4     5     6 
+ |       55|     0.26E+08|     1     2     3     4     5     6 
+ |       56|     0.26E+08|     1     2     3     4     5     6 
+ |       57|     0.59E+08|     1     2     3     4     5     6 
+ |       58|     0.59E+08|     1     2     3     4     5     6 
+ |       59|     0.10E+08|     1     2     3     4     5     6 
+ |       60|     0.10E+08|     1     2     3     4     5     6 
+ |       61|     0.10E+08|     1     2     3     4     5     6 
+ |       62|     0.59E+08|     1     2     3     4     5     6 
+ |       63|     0.59E+08|     1     2     3     4     5     6 
+ |       64|     0.59E+08|     1     2     3     4     5     6 
+ |       65|     0.59E+08|     1     2     3     4     5     6 
+ |       66|     0.26E+08|     1     2     3     4     5     6 
+ |       67|     0.59E+08|     1     2     3     4     5     6 
+ |       68|     0.59E+08|     1     2     3     4     5     6 
+ |       69|     0.59E+08|     1     2     3     4     5     6 
+ |       70|     0.59E+08|     1     2     3     4     5     6 
+ |       71|     0.59E+08|     1     2     3     4     5     6 
+ |       72|     0.59E+08|     1     2     3     4     5     6 
+ |       73|     0.59E+08|     1     2     3     4     5     6 
+ |       74|     0.59E+08|     1     2     3     4     5     6 
+ |       75|     0.59E+08|     1     2     3     4     5     6 
+ |       76|     0.59E+08|     1     2     3     4     5     6 
+ |       77|     0.59E+08|     1     2     3     4     5     6 
+ |       78|     0.59E+08|     1     2     3     4     5     6 
+ |       79|     0.59E+08|     1     2     3     4     5     6 
+ |       80|     0.59E+08|     1     2     3     4     5     6 
+ |       81|     0.59E+08|     1     2     3     4     5     6 
+ |       82|     0.59E+08|     1     2     3     4     5     6 
+  
+ (4) Truncation of Virtuals Cylinders 
+ ------------------------------------------------------------------
+ | Orbital |   Radius    |    Atoms in the cylinder 
+ ------------------------------------------------------------------
+  
+  
+  
+  
+sphere&cylinder setup    wall time(s):  0.181E-02 cpu time(s):  0.140E-01
+ IN FORTRAN, CPP_DECOMPOSED_INTS HAS A VALUE OF  T
+ Number of auxiliary functions =                    522
+ Creating integral buffer of maximum size              524288000
+                    secondary AIJK buffer               10485760
+ Number of threads:                      8
+ 
+ * Entering initial integral preparation
+ DEBUG: Doing NON-DIRECT (ab|cd) and (ia|bc) integrals.
+ Everything in Buffer
+  + integral time:     wall time(s):  0.800E+00 cpu time(s):  0.597E+01
+  => Did integrals
+ Storing buffered integrals to disk
+
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !//                              
+ !// ENTERED DRT GENERATION       
+ !// ROUTINE                      
+ !//                              
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ Maximum number of open shells allowed:                      8
+ Tree search algorithm completed.....
+ Paths processed:                   1274
+ 
+ Parameters for truncation:              
+ ------------------------------------------------
+ Reference CI ............................ F
+ Valence CI   ............................ F
+ 
+ Occupation Threshold for Internal Orbs...  0.999000000000000     
+ Default Radius       for WP..............   10000000.0000000     
+ Radius  Multiplier   for WP..............   10000000.0000000     
+ Cylinder Radius      for WP..............   10000000.0000000     
+ 
+ Default Radius       for TOV (Occupied) .   10000000.0000000     
+ Radius  Multiplier   for TOV (Occupied) .   10000000.0000000     
+ 
+ Occupation Threshold for Virtual Orbs....  0.999000000000000     
+ Default Radius       for TOV (Virtual) ..   10000000.0000000     
+ Radius  Multiplier   for TOV (Virtual) ..   10000000.0000000     
+ Cylinder Radius      for TOV.............   10000000.0000000     
+ 
+ Internal truncation:              
+ ------------------------------------------------
+ Number of V paths thrown out by WP.............       306
+ % thrown out by WP.............................     0.944
+
+ Number of N-1 paths thrown out by WP...........       450
+ % thrown out by WP.............................     0.966
+
+ Number of N-2 single paths thrown out by WP....       474
+ % thrown out by WP.............................     0.979
+
+ Number of N-2 double paths thrown out by WP....       474
+ % thrown out by WP.............................     0.979
+
+ Virtual truncation:              
+ ------------------------------------------------
+ Number of (N-1) excitations removed                                   0
+ Number of (N-2) excitations removed to 1 virtual                      0
+ Number of (N-2) excitations removed to 2 virtuals =                      0
+ 
+ Forming index vector for valence states.....
+     For  2 singles there are     1 spinfunctions and         12 configurations.
+     For  4 singles there are     3 spinfunctions and          1 configurations.
+     Number of valence CSFs:         15
+ Forming index vector for N-1 states.....
+     For  2 singles there are     1 spinfunctions and        864 configurations.
+     For  4 singles there are     3 spinfunctions and        288 configurations.
+     Number of N-1 states:       1728
+ Forming index vector for N-2 states.....
+     For  2 singles there are     1 spinfunctions and      10656 configurations.
+     For  4 singles there are     3 spinfunctions and      15336 configurations.
+     Number of N-2 states:      56664
+ Index vector finished.....
+
+ Total number of configurations.......       1305828
+ Number of configurations kept........       1305229
+ Number of configurations removed.....           599
+ Total number of full CSFs ...........         58407
+ Average CSFs/configuration...........    0.04
+
+
+ Done with calling graph_driver
+  
+ Finished # virtual orbitals / ij hole analysis
+ Total number of holes =                      6
+ Average number of virtual orbitals per hole (for just the D vertex!)= 
+   72.0000000000000     
+ 
+
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !//                              
+ !// ENTERED SPIN PACKAGE         
+ !//                              
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ Finished branching diagram.....
+ 
+ SFT matrix finished.....
+
+ Statistics for cycle matrices:
+ Total number of cycles......................        28
+ Total number of spin functions..............        28
+ Total number of non zero matrix elements....      3364
+ Percentage of elements which are non zero...     0.153
+ Number of multiplications/matrix element....     0.546
+
+Finished computing transpositions.....
+ Done with calling spin
+ THE MATRIX SIZE IS                   406
+ Allocated matrix
+ total_csfs diag                 58407
+ Average Diagonal Element................       -107.3457267799385
+ Lowest  Diagonal Element ...............       -110.9803247313760
+  
+   Starting initial vector selection for a Davidson type algorithm
+   New calculation. Packing initial vector into sparse storage
+   Grabbing initial vector/energies from a reference CI
+  
+          ****************************************
+  
+                     Reference CI Calculation                     
+  
+          **************************************** 
+ 
+ 
+   Rebuilding the SGGA graph to include just the references 
+ 
+ 
+
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !//                              
+ !// ENTERED DRT GENERATION       
+ !// ROUTINE                      
+ !//                              
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ Maximum number of open shells allowed:                      8
+ Tree search algorithm completed.....
+ Paths processed:                   1274
+ 
+ Parameters for truncation:              
+ ------------------------------------------------
+ Reference CI ............................ T
+ Valence CI   ............................ F
+ 
+ Occupation Threshold for Internal Orbs...  0.999000000000000     
+ Default Radius       for WP..............   10000000.0000000     
+ Radius  Multiplier   for WP..............   10000000.0000000     
+ Cylinder Radius      for WP..............   10000000.0000000     
+ 
+ Default Radius       for TOV (Occupied) .   10000000.0000000     
+ Radius  Multiplier   for TOV (Occupied) .   10000000.0000000     
+ 
+ Occupation Threshold for Virtual Orbs....  0.999000000000000     
+ Default Radius       for TOV (Virtual) ..   10000000.0000000     
+ Radius  Multiplier   for TOV (Virtual) ..   10000000.0000000     
+ Cylinder Radius      for TOV.............   10000000.0000000     
+ 
+ Internal truncation:              
+ ------------------------------------------------
+ Number of V paths thrown out by WP.............       311
+ % thrown out by WP.............................     0.960
+
+ Number of N-1 paths thrown out by WP...........       466
+ % thrown out by WP.............................     1.000
+
+ Number of N-2 single paths thrown out by WP....       484
+ % thrown out by WP.............................     1.000
+
+ Number of N-2 double paths thrown out by WP....       484
+ % thrown out by WP.............................     1.000
+
+ Virtual truncation:              
+ ------------------------------------------------
+ Number of (N-1) excitations removed                                   0
+ Number of (N-2) excitations removed to 1 virtual                      0
+ Number of (N-2) excitations removed to 2 virtuals =                      0
+ 
+ Forming index vector for valence states.....
+     For  2 singles there are     1 spinfunctions and         12 configurations.
+     For  4 singles there are     3 spinfunctions and          1 configurations.
+     Number of valence CSFs:         15
+ Forming index vector for N-1 states.....
+     Number of N-1 states:          0
+ Forming index vector for N-2 states.....
+     Number of N-2 states:          0
+ Index vector finished.....
+
+ Total number of configurations.......       1305828
+ Number of configurations kept........       1305517
+ Number of configurations removed.....           311
+ Total number of full CSFs ...........            15
+ Average CSFs/configuration...........    0.00
+
+
+ THE MATRIX SIZE IS                   406
+ Allocated matrix
+ total_csfs diag                    15
+ Average Diagonal Element................       -109.7419840484400
+ Lowest  Diagonal Element ...............       -110.9803247313760
+  
+   Starting initial vector selection for a Davidson type algorithm
+   New calculation. Packing initial vector into sparse storage
+   Grabbing initial vector/energies from lowest few <i|H|i> 
+  :: Solving a standard eigenvalue problem for one or more roots with the Davids
+ on-Liu algorithm :: 
+ 
+ * Entering diag
+  + diag time    wall time(s):  0.490E-04 cpu time(s):  0.100E-02
+  => Did diagonal elements
+ * Entering two seg
+  + purely internal    wall time(s):  0.841E-02 cpu time(s):  0.640E-01
+  + two seg     wall time(s):  0.843E-02 cpu time(s):  0.640E-01
+  => Did two seg loops
+ * Entering driver 1
+  + three internal    wall time(s):  0.974E-03 cpu time(s):  0.800E-02
+  + three external    wall time(s):  0.000E+00 cpu time(s):  0.000E+00
+  + four external    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  => Did first part of 3,4 seg
+ * Entering driver 2
+  + two internal    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  + four internal    wall time(s):  0.183E-01 cpu time(s):  0.146E+00
+  + three internal(II)    wall time(s):  0.200E-05 cpu time(s):  0.000E+00
+  + two internal(II)    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  => Did second part of 3,4 seg
+
+  -----------------------------
+   Iteration   1 has finished 
+  -----------------------------
+
+   -------  --------   ------------------    ---------------    -------------   ----------
+    Iter      Root           Energy             |Hc-Ec|            DeltaE        wall time
+   -------  --------   ------------------    ---------------    -------------   ----------
+      1         1     -0.110980324731D+03    0.16606462D+00    0.11098032D+03       0.03
+
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     1.00000E+00          1             45            2222222101 |   0    0
+ 
+ 
+ * Entering diag
+  + diag time    wall time(s):  0.140E-04 cpu time(s):  0.000E+00
+  => Did diagonal elements
+ * Entering two seg
+  + purely internal    wall time(s):  0.370E-03 cpu time(s):  0.300E-02
+  + two seg     wall time(s):  0.384E-03 cpu time(s):  0.300E-02
+  => Did two seg loops
+ * Entering driver 1
+  + three internal    wall time(s):  0.418E-03 cpu time(s):  0.300E-02
+  + three external    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  + four external    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  => Did first part of 3,4 seg
+ * Entering driver 2
+  + two internal    wall time(s):  0.200E-05 cpu time(s):  0.000E+00
+  + four internal    wall time(s):  0.191E-01 cpu time(s):  0.153E+00
+  + three internal(II)    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  + two internal(II)    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  => Did second part of 3,4 seg
+
+  -----------------------------
+   Iteration   2 has finished 
+  -----------------------------
+
+   -------  --------   ------------------    ---------------    -------------   ----------
+    Iter      Root           Energy             |Hc-Ec|            DeltaE        wall time
+   -------  --------   ------------------    ---------------    -------------   ----------
+      2         1     -0.110993010740D+03    0.77288305D-02    0.12686009D-01       0.02
+
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.96767E-01          1             45            2222222101 |   0    0
+ 
+     6.72409E-02          1             96            2222220121 |   0    0
+ 
+     4.14564E-02          1              2            2222221210 |   0    0
+ 
+     1.46538E-02          1            187            2222221012 |   0    0
+ 
+     4.85744E-08          1             54            2222221111 |   0    0
+ 
+     3.46988E-08          3             54            2222221111 |   0    0
+ 
+     2.34553E-08          2             54            2222221111 |   0    0
+ 
+ 
+ * Entering diag
+  + diag time    wall time(s):  0.130E-04 cpu time(s):  0.000E+00
+  => Did diagonal elements
+ * Entering two seg
+  + purely internal    wall time(s):  0.376E-03 cpu time(s):  0.200E-02
+  + two seg     wall time(s):  0.391E-03 cpu time(s):  0.200E-02
+  => Did two seg loops
+ * Entering driver 1
+  + three internal    wall time(s):  0.412E-03 cpu time(s):  0.300E-02
+  + three external    wall time(s):  0.000E+00 cpu time(s):  0.000E+00
+  + four external    wall time(s):  0.000E+00 cpu time(s):  0.000E+00
+  => Did first part of 3,4 seg
+ * Entering driver 2
+  + two internal    wall time(s):  0.200E-05 cpu time(s):  0.100E-02
+  + four internal    wall time(s):  0.192E-01 cpu time(s):  0.153E+00
+  + three internal(II)    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  + two internal(II)    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  => Did second part of 3,4 seg
+
+  -----------------------------
+   Iteration   3 has finished 
+  -----------------------------
+
+   -------  --------   ------------------    ---------------    -------------   ----------
+    Iter      Root           Energy             |Hc-Ec|            DeltaE        wall time
+   -------  --------   ------------------    ---------------    -------------   ----------
+      3         1     -0.110993054449D+03    0.48242444D-03    0.43708652D-04       0.02
+
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.96642E-01          1             45            2222222101 |   0    0
+ 
+     6.63151E-02          1             96            2222220121 |   0    0
+ 
+     4.36981E-02          1              2            2222221210 |   0    0
+ 
+     1.99415E-02          1            187            2222221012 |   0    0
+ 
+     4.88439E-08          1             54            2222221111 |   0    0
+ 
+     3.38488E-08          3             54            2222221111 |   0    0
+ 
+     2.51457E-08          2             54            2222221111 |   0    0
+ 
+ 
+ * Entering diag
+  + diag time    wall time(s):  0.140E-04 cpu time(s):  0.000E+00
+  => Did diagonal elements
+ * Entering two seg
+  + purely internal    wall time(s):  0.360E-03 cpu time(s):  0.300E-02
+  + two seg     wall time(s):  0.374E-03 cpu time(s):  0.300E-02
+  => Did two seg loops
+ * Entering driver 1
+  + three internal    wall time(s):  0.412E-03 cpu time(s):  0.300E-02
+  + three external    wall time(s):  0.000E+00 cpu time(s):  0.000E+00
+  + four external    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  => Did first part of 3,4 seg
+ * Entering driver 2
+  + two internal    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  + four internal    wall time(s):  0.192E-01 cpu time(s):  0.153E+00
+  + three internal(II)    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  + two internal(II)    wall time(s):  0.100E-05 cpu time(s):  0.000E+00
+  => Did second part of 3,4 seg
+
+  -----------------------------
+   Iteration   4 has finished 
+  -----------------------------
+
+   -------  --------   ------------------    ---------------    -------------   ----------
+    Iter      Root           Energy             |Hc-Ec|            DeltaE        wall time
+   -------  --------   ------------------    ---------------    -------------   ----------
+      4         1     -0.110993054644D+03    0.46332210D-10    0.19553634D-06       0.02
+
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.96632E-01          1             45            2222222101 |   0    0
+ 
+     6.62350E-02          1             96            2222220121 |   0    0
+ 
+     4.41006E-02          1              2            2222221210 |   0    0
+ 
+     1.98317E-02          1            187            2222221012 |   0    0
+ 
+     4.87253E-08          1             54            2222221111 |   0    0
+ 
+     3.37828E-08          3             54            2222221111 |   0    0
+ 
+     2.49421E-08          2             54            2222221111 |   0    0
+ 
+ *************************************
+   norm of the residual has converged 
+ *************************************
+  
+ CONVERGED ROOT =                      1
+  
+    Final wavefunction output for root =                      1
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.96632E-01          1             45            2222222101 |   0    0
+ 
+     6.62350E-02          1             96            2222220121 |   0    0
+ 
+     4.41006E-02          1              2            2222221210 |   0    0
+ 
+     1.98317E-02          1            187            2222221012 |   0    0
+ 
+     4.87253E-08          1             54            2222221111 |   0    0
+ 
+     3.37828E-08          3             54            2222221111 |   0    0
+ 
+     2.49421E-08          2             54            2222221111 |   0    0
+ 
+   Weight of all the reference CSFs
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.96632E-01          1             45            2222222101 |   0    0
+ 
+     6.62350E-02          1             96            2222220121 |   0    0
+ 
+     4.41006E-02          1              2            2222221210 |   0    0
+ 
+     1.98317E-02          1            187            2222221012 |   0    0
+ 
+     4.87253E-08          1             54            2222221111 |   0    0
+ 
+     3.37828E-08          3             54            2222221111 |   0    0
+ 
+     2.49421E-08          2             54            2222221111 |   0    0
+ 
+ 
+ 
+   Rebuilding the SGGA graph to include all the desired configurations 
+ 
+ 
+
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !//                              
+ !// ENTERED DRT GENERATION       
+ !// ROUTINE                      
+ !//                              
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ Maximum number of open shells allowed:                      8
+ Tree search algorithm completed.....
+ Paths processed:                   1274
+ 
+ Parameters for truncation:              
+ ------------------------------------------------
+ Reference CI ............................ F
+ Valence CI   ............................ F
+ 
+ Occupation Threshold for Internal Orbs...  0.999000000000000     
+ Default Radius       for WP..............   10000000.0000000     
+ Radius  Multiplier   for WP..............   10000000.0000000     
+ Cylinder Radius      for WP..............   10000000.0000000     
+ 
+ Default Radius       for TOV (Occupied) .   10000000.0000000     
+ Radius  Multiplier   for TOV (Occupied) .   10000000.0000000     
+ 
+ Occupation Threshold for Virtual Orbs....  0.999000000000000     
+ Default Radius       for TOV (Virtual) ..   10000000.0000000     
+ Radius  Multiplier   for TOV (Virtual) ..   10000000.0000000     
+ Cylinder Radius      for TOV.............   10000000.0000000     
+ 
+ Internal truncation:              
+ ------------------------------------------------
+ Number of V paths thrown out by WP.............       306
+ % thrown out by WP.............................     0.944
+
+ Number of N-1 paths thrown out by WP...........       450
+ % thrown out by WP.............................     0.966
+
+ Number of N-2 single paths thrown out by WP....       474
+ % thrown out by WP.............................     0.979
+
+ Number of N-2 double paths thrown out by WP....       474
+ % thrown out by WP.............................     0.979
+
+ Virtual truncation:              
+ ------------------------------------------------
+ Number of (N-1) excitations removed                                   0
+ Number of (N-2) excitations removed to 1 virtual                      0
+ Number of (N-2) excitations removed to 2 virtuals =                      0
+ 
+ Forming index vector for valence states.....
+     For  2 singles there are     1 spinfunctions and         12 configurations.
+     For  4 singles there are     3 spinfunctions and          1 configurations.
+     Number of valence CSFs:         15
+ Forming index vector for N-1 states.....
+     For  2 singles there are     1 spinfunctions and        864 configurations.
+     For  4 singles there are     3 spinfunctions and        288 configurations.
+     Number of N-1 states:       1728
+ Forming index vector for N-2 states.....
+     For  2 singles there are     1 spinfunctions and      10656 configurations.
+     For  4 singles there are     3 spinfunctions and      15336 configurations.
+     Number of N-2 states:      56664
+ Index vector finished.....
+
+ Total number of configurations.......       1305828
+ Number of configurations kept........       1305229
+ Number of configurations removed.....           599
+ Total number of full CSFs ...........         58407
+ Average CSFs/configuration...........    0.04
+
+
+ THE MATRIX SIZE IS                   406
+ Allocated matrix
+ total_csfs diag                 58407
+ Average Diagonal Element................       -107.3457267799385
+ Lowest  Diagonal Element ...............       -110.9803247313760
+ 
+reference ci     wall time(s):  0.114E+00 cpu time(s):  0.890E+00
+ the reference energy is (elec + nuclear) =   -77.9336584847936     
+  
+          ****************************************
+  
+                     (MR)SDCI Driver                      
+  
+          **************************************** 
+  :: Solving a standard eigenvalue problem for one or more roots with the Davids
+ on-Liu algorithm :: 
+ 
+ * Entering diag
+  + diag time    wall time(s):  0.981E-03 cpu time(s):  0.700E-02
+  => Did diagonal elements
+ * Entering two seg
+  + purely external    wall time(s):  0.881E-02 cpu time(s):  0.660E-01
+  + purely internal    wall time(s):  0.899E-02 cpu time(s):  0.720E-01
+  + one external    wall time(s):  0.147E-01 cpu time(s):  0.120E+00
+  + two seg     wall time(s):  0.325E-01 cpu time(s):  0.258E+00
+  => Did two seg loops
+ * Entering driver 1
+  + three internal    wall time(s):  0.296E-02 cpu time(s):  0.230E-01
+  + three external    wall time(s):  0.525E-01 cpu time(s):  0.422E+00
+  + four external    wall time(s):  0.281E+00 cpu time(s):  0.225E+01
+  => Did first part of 3,4 seg
+ * Entering driver 2
+  + two internal    wall time(s):  0.232E-01 cpu time(s):  0.185E+00
+  + four internal    wall time(s):  0.184E-01 cpu time(s):  0.148E+00
+  + three internal(II)    wall time(s):  0.946E-02 cpu time(s):  0.750E-01
+  + two internal(II)    wall time(s):  0.120E-01 cpu time(s):  0.960E-01
+  => Did second part of 3,4 seg
+  Trying to close buffer for CD vectors.
+Execute rm /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_iajb_unsorted.dat
+
+closing pool responsible for:
+305 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//mo_int.dat
+308 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//ijka_test.dat
+320 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_iiab.dat
+322 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_iaib.dat
+330 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ijpp.dat
+331 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ipjp.dat
+340 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_iabc.dat
+345 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_abcd.dat
+351 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_iajb.dat
+352 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ijab.dat
+365 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ijkl.dat
+366 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_iajk.dat
+369 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ikaj.dat
+371 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ijka.dat
+604 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//2s2_seg_info_real.dat
+reseting pool
+pool reset
+Done with closepool
+  Resizing integral buffer to maximum size             1048576000
+
+  -----------------------------
+   Iteration   1 has finished 
+  -----------------------------
+
+   -------  --------   ------------------    ---------------    -------------   ----------
+    Iter      Root           Energy             |Hc-Ec|            DeltaE        wall time
+   -------  --------   ------------------    ---------------    -------------   ----------
+      1         1     -0.110993054644D+03    0.31506656D+00    0.11099305D+03       0.44
+
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.96632E-01          1             45            2222222101 |   0    0
+ 
+     6.62350E-02          1             96            2222220121 |   0    0
+ 
+     4.41006E-02          1              2            2222221210 |   0    0
+ 
+     1.98317E-02          1            187            2222221012 |   0    0
+ 
+     4.87253E-08          1             54            2222221111 |   0    0
+ 
+     3.37828E-08          3             54            2222221111 |   0    0
+ 
+     2.49421E-08          2             54            2222221111 |   0    0
+ 
+ 
+ * Entering diag
+  + diag time    wall time(s):  0.870E-03 cpu time(s):  0.700E-02
+  => Did diagonal elements
+ * Entering two seg
+  + purely external    wall time(s):  0.843E-02 cpu time(s):  0.680E-01
+  + purely internal    wall time(s):  0.195E-02 cpu time(s):  0.150E-01
+  + one external    wall time(s):  0.842E-02 cpu time(s):  0.670E-01
+  + two seg     wall time(s):  0.188E-01 cpu time(s):  0.151E+00
+  => Did two seg loops
+ * Entering driver 1
+  + three internal    wall time(s):  0.111E-02 cpu time(s):  0.900E-02
+  + three external    wall time(s):  0.445E-01 cpu time(s):  0.357E+00
+  + four external    wall time(s):  0.151E+00 cpu time(s):  0.121E+01
+  => Did first part of 3,4 seg
+ * Entering driver 2
+  + two internal    wall time(s):  0.156E-01 cpu time(s):  0.125E+00
+  + four internal    wall time(s):  0.193E-01 cpu time(s):  0.154E+00
+  + three internal(II)    wall time(s):  0.481E-02 cpu time(s):  0.380E-01
+  + two internal(II)    wall time(s):  0.411E-02 cpu time(s):  0.320E-01
+  => Did second part of 3,4 seg
+
+  -----------------------------
+   Iteration   2 has finished 
+  -----------------------------
+
+   -------  --------   ------------------    ---------------    -------------   ----------
+    Iter      Root           Energy             |Hc-Ec|            DeltaE        wall time
+   -------  --------   ------------------    ---------------    -------------   ----------
+      2         1     -0.111029627054D+03    0.52871070D-01    0.36572410D-01       0.26
+
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.88883E-01          1             45            2222222101 |   0    0
+ 
+     6.57200E-02          1             96            2222220121 |   0    0
+ 
+     4.37578E-02          1              2            2222221210 |   0    0
+ 
+     2.34612E-02          1             10            2222221110 |  48    0
+ 
+     2.05047E-02          3             10            2222221110 |  57    0
+ 
+     1.98429E-02          1            115            2222220201 |  57    0
+ 
+     1.96775E-02          1            187            2222221012 |   0    0
+ 
+     1.83878E-02          3             10            2222221110 |  48    0
+ 
+     1.78832E-02          2            143            2222221011 |  51    0
+ 
+     1.73907E-02          3             10            2222221110 |  37    0
+ 
+ 
+ * Entering diag
+  + diag time    wall time(s):  0.859E-03 cpu time(s):  0.600E-02
+  => Did diagonal elements
+ * Entering two seg
+  + purely external    wall time(s):  0.845E-02 cpu time(s):  0.680E-01
+  + purely internal    wall time(s):  0.185E-02 cpu time(s):  0.150E-01
+  + one external    wall time(s):  0.838E-02 cpu time(s):  0.670E-01
+  + two seg     wall time(s):  0.187E-01 cpu time(s):  0.150E+00
+  => Did two seg loops
+ * Entering driver 1
+  + three internal    wall time(s):  0.111E-02 cpu time(s):  0.900E-02
+  + three external    wall time(s):  0.445E-01 cpu time(s):  0.357E+00
+  + four external    wall time(s):  0.151E+00 cpu time(s):  0.121E+01
+  => Did first part of 3,4 seg
+ * Entering driver 2
+  + two internal    wall time(s):  0.155E-01 cpu time(s):  0.124E+00
+  + four internal    wall time(s):  0.193E-01 cpu time(s):  0.154E+00
+  + three internal(II)    wall time(s):  0.481E-02 cpu time(s):  0.390E-01
+  + two internal(II)    wall time(s):  0.418E-02 cpu time(s):  0.330E-01
+  => Did second part of 3,4 seg
+
+  -----------------------------
+   Iteration   3 has finished 
+  -----------------------------
+
+   -------  --------   ------------------    ---------------    -------------   ----------
+    Iter      Root           Energy             |Hc-Ec|            DeltaE        wall time
+   -------  --------   ------------------    ---------------    -------------   ----------
+      3         1     -0.111030546127D+03    0.11198891D-01    0.91907278D-03       0.26
+
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.88842E-01          1             45            2222222101 |   0    0
+ 
+     5.83568E-02          1             96            2222220121 |   0    0
+ 
+     4.42222E-02          1              2            2222221210 |   0    0
+ 
+     2.21834E-02          1             10            2222221110 |  48    0
+ 
+     2.01967E-02          3             10            2222221110 |  57    0
+ 
+     1.96097E-02          1            115            2222220201 |  57    0
+ 
+     1.77765E-02          1            187            2222221012 |   0    0
+ 
+     1.74254E-02          3             10            2222221110 |  37    0
+ 
+     1.72839E-02          2            143            2222221011 |  51    0
+ 
+     1.72429E-02          3             10            2222221110 |  48    0
+ 
+ 
+ * Entering diag
+  + diag time    wall time(s):  0.860E-03 cpu time(s):  0.700E-02
+  => Did diagonal elements
+ * Entering two seg
+  + purely external    wall time(s):  0.842E-02 cpu time(s):  0.680E-01
+  + purely internal    wall time(s):  0.188E-02 cpu time(s):  0.150E-01
+  + one external    wall time(s):  0.838E-02 cpu time(s):  0.660E-01
+  + two seg     wall time(s):  0.187E-01 cpu time(s):  0.150E+00
+  => Did two seg loops
+ * Entering driver 1
+  + three internal    wall time(s):  0.111E-02 cpu time(s):  0.800E-02
+  + three external    wall time(s):  0.443E-01 cpu time(s):  0.356E+00
+  + four external    wall time(s):  0.152E+00 cpu time(s):  0.121E+01
+  => Did first part of 3,4 seg
+ * Entering driver 2
+  + two internal    wall time(s):  0.155E-01 cpu time(s):  0.124E+00
+  + four internal    wall time(s):  0.192E-01 cpu time(s):  0.153E+00
+  + three internal(II)    wall time(s):  0.483E-02 cpu time(s):  0.390E-01
+  + two internal(II)    wall time(s):  0.412E-02 cpu time(s):  0.330E-01
+  => Did second part of 3,4 seg
+
+  -----------------------------
+   Iteration   4 has finished 
+  -----------------------------
+
+   -------  --------   ------------------    ---------------    -------------   ----------
+    Iter      Root           Energy             |Hc-Ec|            DeltaE        wall time
+   -------  --------   ------------------    ---------------    -------------   ----------
+      4         1     -0.111030596072D+03    0.26894852D-02    0.49945053D-04       0.26
+
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.88528E-01          1             45            2222222101 |   0    0
+ 
+     6.00046E-02          1             96            2222220121 |   0    0
+ 
+     4.56821E-02          1              2            2222221210 |   0    0
+ 
+     2.25577E-02          1             10            2222221110 |  48    0
+ 
+     2.04771E-02          3             10            2222221110 |  57    0
+ 
+     1.92270E-02          1            115            2222220201 |  57    0
+ 
+     1.83695E-02          3             10            2222221110 |  37    0
+ 
+     1.83323E-02          1            187            2222221012 |   0    0
+ 
+     1.79417E-02          3             10            2222221110 |  48    0
+ 
+     1.72385E-02          2            143            2222221011 |  51    0
+ 
+ 
+ * Entering diag
+  + diag time    wall time(s):  0.856E-03 cpu time(s):  0.700E-02
+  => Did diagonal elements
+ * Entering two seg
+  + purely external    wall time(s):  0.842E-02 cpu time(s):  0.680E-01
+  + purely internal    wall time(s):  0.184E-02 cpu time(s):  0.130E-01
+  + one external    wall time(s):  0.838E-02 cpu time(s):  0.680E-01
+  + two seg     wall time(s):  0.187E-01 cpu time(s):  0.149E+00
+  => Did two seg loops
+ * Entering driver 1
+  + three internal    wall time(s):  0.111E-02 cpu time(s):  0.900E-02
+  + three external    wall time(s):  0.441E-01 cpu time(s):  0.354E+00
+  + four external    wall time(s):  0.151E+00 cpu time(s):  0.121E+01
+  => Did first part of 3,4 seg
+ * Entering driver 2
+  + two internal    wall time(s):  0.155E-01 cpu time(s):  0.124E+00
+  + four internal    wall time(s):  0.193E-01 cpu time(s):  0.153E+00
+  + three internal(II)    wall time(s):  0.477E-02 cpu time(s):  0.390E-01
+  + two internal(II)    wall time(s):  0.413E-02 cpu time(s):  0.330E-01
+  => Did second part of 3,4 seg
+
+  -----------------------------
+   Iteration   5 has finished 
+  -----------------------------
+
+   -------  --------   ------------------    ---------------    -------------   ----------
+    Iter      Root           Energy             |Hc-Ec|            DeltaE        wall time
+   -------  --------   ------------------    ---------------    -------------   ----------
+      5         1     -0.111030599093D+03    0.63869964D-03    0.30211932D-05       0.26
+
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.88514E-01          1             45            2222222101 |   0    0
+ 
+     5.95864E-02          1             96            2222220121 |   0    0
+ 
+     4.57958E-02          1              2            2222221210 |   0    0
+ 
+     2.26839E-02          1             10            2222221110 |  48    0
+ 
+     2.05099E-02          3             10            2222221110 |  57    0
+ 
+     1.91543E-02          1            115            2222220201 |  57    0
+ 
+     1.85084E-02          3             10            2222221110 |  37    0
+ 
+     1.84573E-02          1            187            2222221012 |   0    0
+ 
+     1.81385E-02          3             10            2222221110 |  48    0
+ 
+     1.73463E-02          2            143            2222221011 |  51    0
+ 
+ 
+ * Entering diag
+  + diag time    wall time(s):  0.860E-03 cpu time(s):  0.700E-02
+  => Did diagonal elements
+ * Entering two seg
+  + purely external    wall time(s):  0.843E-02 cpu time(s):  0.680E-01
+  + purely internal    wall time(s):  0.184E-02 cpu time(s):  0.150E-01
+  + one external    wall time(s):  0.838E-02 cpu time(s):  0.670E-01
+  + two seg     wall time(s):  0.187E-01 cpu time(s):  0.150E+00
+  => Did two seg loops
+ * Entering driver 1
+  + three internal    wall time(s):  0.110E-02 cpu time(s):  0.900E-02
+  + three external    wall time(s):  0.441E-01 cpu time(s):  0.353E+00
+  + four external    wall time(s):  0.151E+00 cpu time(s):  0.121E+01
+  => Did first part of 3,4 seg
+ * Entering driver 2
+  + two internal    wall time(s):  0.155E-01 cpu time(s):  0.124E+00
+  + four internal    wall time(s):  0.193E-01 cpu time(s):  0.153E+00
+  + three internal(II)    wall time(s):  0.481E-02 cpu time(s):  0.390E-01
+  + two internal(II)    wall time(s):  0.413E-02 cpu time(s):  0.330E-01
+  => Did second part of 3,4 seg
+
+  -----------------------------
+   Iteration   6 has finished 
+  -----------------------------
+
+   -------  --------   ------------------    ---------------    -------------   ----------
+    Iter      Root           Energy             |Hc-Ec|            DeltaE        wall time
+   -------  --------   ------------------    ---------------    -------------   ----------
+      6         1     -0.111030599301D+03    0.21591358D-03    0.20763254D-06       0.26
+
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.88499E-01          1             45            2222222101 |   0    0
+ 
+     5.96318E-02          1             96            2222220121 |   0    0
+ 
+     4.60513E-02          1              2            2222221210 |   0    0
+ 
+     2.26852E-02          1             10            2222221110 |  48    0
+ 
+     2.04815E-02          3             10            2222221110 |  57    0
+ 
+     1.91613E-02          1            115            2222220201 |  57    0
+ 
+     1.84985E-02          3             10            2222221110 |  37    0
+ 
+     1.84607E-02          1            187            2222221012 |   0    0
+ 
+     1.81410E-02          3             10            2222221110 |  48    0
+ 
+     1.73300E-02          2            143            2222221011 |  51    0
+ 
+ ******************************
+   energy change has converged 
+ ******************************
+  
+ CONVERGED ROOT =                      1
+  
+    Final wavefunction output for root =                      1
+   Best guess wavefunction summary
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.88499E-01          1             45            2222222101 |   0    0
+ 
+     5.96318E-02          1             96            2222220121 |   0    0
+ 
+     4.60513E-02          1              2            2222221210 |   0    0
+ 
+     2.26852E-02          1             10            2222221110 |  48    0
+ 
+     2.04815E-02          3             10            2222221110 |  57    0
+ 
+     1.91613E-02          1            115            2222220201 |  57    0
+ 
+     1.84985E-02          3             10            2222221110 |  37    0
+ 
+     1.84607E-02          1            187            2222221012 |   0    0
+ 
+     1.81410E-02          3             10            2222221110 |  48    0
+ 
+     1.73300E-02          2            143            2222221011 |  51    0
+ 
+   Weight of all the reference CSFs
+   --------------------------------
+   Coefficient      Spin func.      Arc Weight       Internal Occ | Virtuals 
+
+     9.88499E-01          1             45            2222222101 |   0    0
+ 
+     5.96318E-02          1             96            2222220121 |   0    0
+ 
+     4.60513E-02          1              2            2222221210 |   0    0
+ 
+     1.84607E-02          1            187            2222221012 |   0    0
+ 
+     8.72620E-08          3             54            2222221111 |   0    0
+ 
+     8.49739E-08          1             54            2222221111 |   0    0
+ 
+     4.83592E-08          2             54            2222221111 |   0    0
+ 
+
+         A Posteriori Corrections
+
+   Define c_0^2 = \sum c_{ref}^2 =  0.98314829E+00
+   Davidson                 -0.63269185E-03
+   Renormalized Davidson    -0.64353654E-03
+   Davidson-Silver          -0.65475949E-03
+   Meissner                 -0.10725609E-03
+   Pople                    -0.32174464E-03
+ 
+   Define c_0^2 =  <ref|ci>^2    =  0.98310483E+00
+   Davidson                 -0.63432328E-03
+   Renormalized Davidson    -0.64522446E-03
+   Davidson-Silver          -0.65650687E-03
+   Meissner                 -0.10753741E-03
+   Pople                    -0.32258841E-03
+ 
+eigenvalue solver    wall time(s):  0.191E+01 cpu time(s):  0.152E+02
+
+ Timing summary (sec)
+ -----------------------------------------
+ Integral sorting time.....................     0.000
+ Graph generation time.....................     0.002
+ Spin integral generation time.............     0.001
+ Total diagonalization time................     1.910
+      * diagonal elements time.............     0.005
+      * two segment loop time..............     0.136
+      * three and four segment loop time...     1.681
+        + ijkl time........................     0.190
+        + aijk time........................     0.033
+        + abij time........................     0.101
+        + ikjk time........................     0.011
+        + abcd time........................     1.038
+        + iabc time........................     0.274
+        + ijaj time........................     0.033
+
+
+ Root     1 total energy (electronic + nuclear) is :      -77.971203141520249
+
+ DEBUG: Took care of buffer I.
+ DEBUG: Took care of buffer II.
+ DEBUG: Took care of buffer III.
+ DEBUG: Took care of buffer IV.
+ DEBUG: Took care of buffer V.
+closing pool responsible for:
+308 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//ijka_test.dat
+320 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_iiab.dat
+322 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_iaib.dat
+330 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ijpp.dat
+331 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ipjp.dat
+340 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_iabc.dat
+345 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_abcd.dat
+351 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_iajb.dat
+352 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ijab.dat
+365 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ijkl.dat
+366 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_iajk.dat
+369 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ikaj.dat
+371 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//cd_ijka.dat
+reseting pool
+pool reset
+Done with closepool
+closing pool responsible for:
+308 /home/fjricci/stand-alone/tests/Tests/Ethylene_HighSpin/workdir//ijka_test.dat
+reseting pool
+pool reset
+Done with closepool
+ DEBUG: Took care of buffers, closing remaining files.
+TOTAL EXECUTION TIME  wall time(s): 4.375 cpu time(s): 34.04
